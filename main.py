@@ -50,7 +50,13 @@ def do_things(filename, metric):
 # #############################
 
 
-for url in get_things("url"):
-    y = ['main_domain_only', 'show_verified', 'state', 'page', 'format', 'start_date', 'end_date']
-    x = do_things(url, "visits").drop(columns=y)
-    print(x)
+def metricPls(metric):
+    for url in get_things("url"):
+        y = ['main_domain_only', 'show_verified', 'state', 'page', 'format', 'start_date', 'end_date']
+        x = do_things(url, metric).drop(columns=y)
+        writer = pd.ExcelWriter(f'{url}.xlsx', engine='xlsxwriter')
+        x.to_excel(writer, sheet_name=metric)
+        writer.save()
+
+
+metricPls('visits')
