@@ -1,6 +1,7 @@
 # Program-specific files
 key
 url
+**/*.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
