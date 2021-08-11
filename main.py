@@ -33,8 +33,6 @@ class simpull:
         )
 
 
-print(get_url())
-
 # #### WORKING DOWNLOADER #####
 for each in get_url():
     with open(f'{each}.json', 'w') as outfile:
