@@ -3,6 +3,7 @@ import json
 import pandas as pd
 import xlsxwriter as xl
 
+
 def get_things(filename):
     with open(filename, 'r') as get_file:
         return (
@@ -40,13 +41,13 @@ def download_things():
 
 
 # #### JSON READER #####
-def do_things(filename):
-    with open(f"{each}.json", "r") as get_file:
+def do_things(filename, metric):
+    with open(f"{filename}.json", "r") as get_file:
         df = json.load(get_file)
-        df = pd.json_normalize(df, 'visits').assign(**df['meta']['request'])
+        df = pd.json_normalize(df, metric).assign(**df['meta']['request'])
         return df
 # #############################
 
 
-for each in get_things("url"):
-    print(do_things(each))
+for url in get_things("url"):
+    print(do_things(url, 'visits'))
