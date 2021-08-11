@@ -43,7 +43,7 @@ def download_things():
 def do_things(filename):
     with open(f"{each}.json", "r") as get_file:
         df = json.load(get_file)
-        df = pd.DataFrame(df['visits'])
+        df = pd.json_normalize(df, 'visits').assign(**df['meta']['request'])
         return df
 # #############################
 
