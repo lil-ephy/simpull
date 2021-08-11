@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 def get_api_key(filename="key"):
     with open(filename) as key:
         return key.read()
